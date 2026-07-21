@@ -1,4 +1,4 @@
-from api.posts_api import PostsApi
+
 import pytest
 
 USER_ID = 9
@@ -7,13 +7,6 @@ payload = {
     "body": "Learning API testing",
     "userId": 9
 }
-
-
-@pytest.fixture
-def api():
-    # print("Creating API")
-    return PostsApi()
-
 
 @pytest.fixture
 def create_post_response(api):

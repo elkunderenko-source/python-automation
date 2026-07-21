@@ -1,10 +1,3 @@
-from api.users_api import UsersApi
-import pytest
-
-@pytest.fixture
-def api_users():
-    return UsersApi()
-
 def test_users_api(api_users):
     response = api_users.get_users()
     user_data = response.json()
