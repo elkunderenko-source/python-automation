@@ -1,6 +1,6 @@
 
 def test_get_comments_by_id(comments_api):
-    response = comments_api.get_comments()
+    response = comments_api.get_all()
     assert response.status_code == 200
     comments = response.json()
     for comment in comments:
@@ -8,7 +8,7 @@ def test_get_comments_by_id(comments_api):
             comment_from_list = comment
             break
     assert comment_from_list is not None
-    comment_response = comments_api.get_comment_by_id(comment_from_list["id"])
+    comment_response = comments_api.get_by_id(comment_from_list["id"])
     comment = comment_response.json()
     assert comment_from_list['id'] == comment.get('id')
     assert comment_from_list['name'] == comment.get('name')

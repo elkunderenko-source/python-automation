@@ -1,11 +1,9 @@
 import requests
+from api.base.base_api import BaseApi
 
 
-class PostsApi:
+class PostsApi(BaseApi):
     BASE_URL = "https://jsonplaceholder.typicode.com/posts"
-
-    def get_post(self, post_id):
-        return requests.get(f'{self.BASE_URL}/{post_id}')
 
     def get_posts_by_user(self, user_id):
         return requests.get(f'{self.BASE_URL}?userId={user_id}')

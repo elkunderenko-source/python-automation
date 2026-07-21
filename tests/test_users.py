@@ -1,5 +1,5 @@
 def test_users_api(api_users):
-    response = api_users.get_users()
+    response = api_users.get_all()
     user_data = response.json()
     assert response.status_code == 200
     assert isinstance(user_data, list)
@@ -22,14 +22,14 @@ def test_users_api(api_users):
 
 def test_user_from_list_matches_single_user(api_users):
     user_from_list = None
-    response = api_users.get_users()
+    response = api_users.get_all()
     users = response.json()
     for user in users:
         if user['username'] == "Bret":
             user_from_list = user
             break
 
-    user_data = api_users.get_user_by_id(user_from_list["id"]).json()
+    user_data = api_users.get_by_id(user_from_list["id"]).json()
     assert user_data['username'] == user_from_list['username']
     assert user_data['address']['street'] == user_from_list['address']['street']
     assert user_data['address']['suite'] == user_from_list['address']['suite']
@@ -40,7 +40,7 @@ def test_user_from_list_matches_single_user(api_users):
     assert user_data['company']['bs'] == user_from_list['company']['bs']
 
 def test_user_data(api_users):
-    response = api_users.get_users()
+    response = api_users.get_all()
     users = response.json()
     for user in users:
         assert user['email'].count('@') == 1
