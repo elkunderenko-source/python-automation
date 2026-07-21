@@ -1,11 +1,6 @@
-from api.users_api import AlbumsApi
-import pytest
-
 ALBUM_TITLE = "quidem molestiae enim"
 
-@pytest.fixture
-def album_api():
-    return AlbumsApi()
+
 
 def test_get_album_by_title(album_api):
     response = album_api.get_albums()

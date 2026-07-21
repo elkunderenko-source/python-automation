@@ -1,11 +1,4 @@
 
-from api.comments_api import CommentsApi
-import pytest
-
-@pytest.fixture
-def comments_api():
-    return CommentsApi()
-
 def test_get_comments_by_id(comments_api):
     response = comments_api.get_comments()
     assert response.status_code == 200
