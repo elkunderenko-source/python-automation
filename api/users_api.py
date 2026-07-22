@@ -2,11 +2,13 @@ import requests
 from api.base.base_api import BaseApi
 
 class UsersApi(BaseApi):
-    BASE_URL = "http://jsonplaceholder.typicode.com/users"
+    def __init__(self):
+        super().__init__("http://jsonplaceholder.typicode.com/users")
 
 class AlbumsApi(BaseApi):
-    BASE_URL = "https://jsonplaceholder.typicode.com/albums"
+    def __init__(self):
+        super().__init__("http://jsonplaceholder.typicode.com/albums")
 
     def get_album_by_userid(self, user_id):
-        return requests.get(f"{self.BASE_URL}?userId={user_id}")
+        return requests.get(f"{self.base_url}?userId={user_id}")
 
