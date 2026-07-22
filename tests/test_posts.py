@@ -1,4 +1,4 @@
-
+import json
 import pytest
 
 USER_ID = 9
@@ -32,6 +32,8 @@ def test_new_post(create_post_response):
     assert response_data["body"] == payload["body"]
     assert response_data["userId"] == payload["userId"]
     assert isinstance(response_data, dict)
+
+
 
 
 

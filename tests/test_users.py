@@ -1,3 +1,5 @@
+import pytest
+import json
 def test_users_api(api_users):
     response = api_users.get_all()
     user_data = response.json()
@@ -48,3 +50,14 @@ def test_user_data(api_users):
         assert user['phone']
         assert isinstance(float(user["address"]["geo"]["lat"]), float)
         assert isinstance(float(user["address"]["geo"]["lng"]), float)
+
+
+def get_users_data():
+    with open("data/users.json") as file:
+        data = json.load(file)
+    return [ (item["user_id"], item["expected_status"]) for item in data ]
+
+@pytest.mark.parametrize("user_id, expected_status", get_users_data())
+def test_user_by_ids(api_users, user_id, expected_status):
+    response = api_users.get_by_id(user_id)
+    assert response.status_code == expected_status
