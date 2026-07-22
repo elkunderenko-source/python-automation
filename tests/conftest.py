@@ -7,7 +7,7 @@ from api.comments_api import CommentsApi
 @pytest.fixture
 def api():
     # print("Creating API")
-    return PostsApi()
+    return PostsApi('https://jsonplaceholder.typicode.com/posts')
 
 @pytest.fixture
 def api_users():
